@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  pandas_app:
+    build:
+      context: ./pandas
+      dockerfile: Dockerfile
+    container_name: pandas_container
+    volumes:
+      - ./data:/app/data
+    networks:
+      - benchmark_data_net
+
+
+  polars_app: 
+    build:
+      context: ./polars
+      dockerfile: Dockerfile
+    container_name: polars_container
+    volumes:
+      - ./data:/app/data
+    networks:
+      - benchmark_data_net
+
+networks:
+  benchmark_data_net:
+    driver: bridge

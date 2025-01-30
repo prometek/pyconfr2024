@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  asgi_app:
+    build:
+      context: ./asgi
+      dockerfile: Dockerfile
+    container_name: asgi_container
+    ports:
+      - "8000:8000"
+    networks:
+      - benchmark_net
+
+  wsgi_app:
+    build:
+      context: ./wsgi
+      dockerfile: Dockerfile
+    container_name: wsgi_container
+    ports:
+      - "8001:8000"
+    networks:
+      - benchmark_net
+
+networks:
+  benchmark_net:
+    driver: bridge
